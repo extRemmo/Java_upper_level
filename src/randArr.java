@@ -5,20 +5,22 @@ class randArr {
      public static void main(String[] args){
          // объявить , выделить память и инициализировать объекты типа MinMaxElem
          MinMaxElem elem = new MinMaxElem();
-         //MinMaxElem elem2 = new MinMaxElem();
 
          int[] array = new int[20];
          //получить сгенерированный массив
          elem.random(array);
-         //получить данные по мин/макс положительным и отрицательным числам в массиве
-
+         /*получить данные по мин/макс положительным и отрицательным числам в массиве
+         записать индекс найденного элемента в переменную "а"
+          */
 
          int a1 = elem.minPositiveElem(array);
          int a2 = elem.maxNegativeElem(array);
+
+         //поменять указанные в задаче элементы местами
          int temp = array[a1];
          array[a1] = array[a2];
          array[a2] = temp;
-
+         // вывести финальный массив
          for (int i:array) {
              System.out.println(i);
          }
