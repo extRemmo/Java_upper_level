@@ -1,21 +1,36 @@
- class randArr {
+import java.lang.module.FindException;
+
+class randArr {
 
      public static void main(String[] args){
+         // объявить , выделить память и инициализировать объекты типа MinMaxElem
          MinMaxElem elem = new MinMaxElem();
-         MinMaxElem elem2 = new MinMaxElem();
-         int[] array = new int[20];
-         elem.random(array);
-         elem.maxNegativeElem(array);
-         elem2.minPositiveElem(array);
+         //MinMaxElem elem2 = new MinMaxElem();
 
+         int[] array = new int[20];
+         //получить сгенерированный массив
+         elem.random(array);
+         //получить данные по мин/макс положительным и отрицательным числам в массиве
+
+
+         int a1 = elem.minPositiveElem(array);
+         int a2 = elem.maxNegativeElem(array);
+         int temp = array[a1];
+         array[a1] = array[a2];
+         array[a2] = temp;
+
+         for (int i:array) {
+             System.out.println(i);
+         }
      }
 
 }
 
 class MinMaxElem {
-    int index = -1;
+
     //метод поиска наибольшего отрицательного элелемента в массиве
-    void maxNegativeElem(int[] array) {
+    int maxNegativeElem(int[] array) {
+        int index = -1;
         for (int i = 0; i < 20; i++) {
             if (array[i] < 0 && index == -1)
                 index = i;
@@ -23,9 +38,12 @@ class MinMaxElem {
                 index = i;
         }
         System.out.println("Индекс: " + index + " Макс.Отриц.Элемент = " + array[index]);
+        return index;
     }
     //метод поиска наименьшего положительного элелемента в массиве
-     void minPositiveElem(int[] array) {
+
+     int minPositiveElem(int[] array) {
+         int index = -1;
          for (int i = 0; i < 20; i++) {
              if (array[i] > 0 && index == -1)
                  index = i;
@@ -33,6 +51,7 @@ class MinMaxElem {
                  index = i;
          }
          System.out.println("Индекс: " + index + " Мин.Положит.Элемент = " + array[index]);
+         return index;
      }
     //метод генерации массива от -10 до 10
     void random(int[] array) {
