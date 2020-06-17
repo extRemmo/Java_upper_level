@@ -1,5 +1,5 @@
 package com.dmitry.present_box;
-
+//интерфейс Sweets как набор абстрактных методов, определяющих имя, вес и уникальный параметр
 public interface Sweets {
     String getName();
 

@@ -1,5 +1,5 @@
 package com.dmitry.present_box;
-
+//релизуем интерфейс в классе Jellybean
 public class Jellybean implements Sweets{
     String name;
     int price;

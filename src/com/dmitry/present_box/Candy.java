@@ -1,5 +1,5 @@
 package com.dmitry.present_box;
-
+//релизуем интерфейс в классе Candy
 public class Candy implements Sweets {
 
     String name;
