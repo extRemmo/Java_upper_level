@@ -4,7 +4,7 @@ public class Calculator {
     private double a;
     private double b;
 
-    public  Calculator (double a, double b){
+    public  Calculator (double a, double b){ //конструктор с параметрами (наши 2 числа)
         this.a = a;
         this.b = b;
     }
