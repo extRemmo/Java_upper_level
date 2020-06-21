@@ -28,45 +28,31 @@ public class Box {
             switch (choice) {
                 case "1":
                     //объявить , выделить память и инициализировать объекты типа Candy
-                    Candy candy1 = new Candy("Конфеты \"Детям\"", 145, 70, "Без шоколада");
-                    sweets.add(candy1);
-                    totalPrice += candy1.getPrice();
-                    totalWeight += candy1.getWeight();
-                    System.out.println("Конфеты \"Детям\" добавлены в подарок");
+                    sweets.add(new Candy ("Конфеты \"Детям\"", 145, 70, "45 x 35"));
                     break;
                 case "2":
-                    Candy candy2 = new Candy("Конфеты \"Мишка\"", 199, 85, "Очень сладкие");
-                    sweets.add(candy2);
-                    totalPrice += candy2.getPrice();
-                    totalWeight += candy2.getWeight();
-                    System.out.println("Конфеты \"Мишка\" добавлены в подарок");
+                    sweets.add(new Candy("Конфеты \"Мишка\"", 199, 85, "40 x 30"));
                     break;
                 //объявить , выделить память и инициализировать объекты типа Jellybean
                 case "3":
-                    Jellybean marmelad1 = new Jellybean("Мармелад \"Сластена\"", 99, 10, "Разноцветные");
-                    sweets.add(marmelad1);
-                    totalPrice += marmelad1.getPrice();
-                    totalWeight += marmelad1.getWeight();
-                    System.out.println("Мармелад \"Сластена\" добавлен в подарок");
+                    sweets.add(new Jellybean("Мармелад \"Сластена\"", 99, 10, "Red"));
                     break;
                 case "4":
-                    Jellybean marmelad2 = new Jellybean("Мармелад \"Слипнисьзад\"", 95, 20, "Один сахар");
-                    sweets.add(marmelad2);
-                    totalPrice += marmelad2.getPrice();
-                    totalWeight += marmelad2.getWeight();
-                    System.out.println("Мармелад \"Слипнисьзад\" добавлен в подарок");
+                    sweets.add(new Jellybean("Мармелад \"Слипнисьзад\"", 95, 20, "Brown"));
                     break;
                 case "5":
                     formed = true;
                     break;
             }
-
-
+            Sweets lastSweet = sweets.get(sweets.size() - 1);
+            System.out.println("Конфеты "+ lastSweet.getName() + " добавлены в подарок");
         }
         int count = 0;
         System.out.println("\nСостав подарка:");
         for (Sweets sweet:sweets) {
             count++;
+            totalPrice += sweet.getPrice();
+            totalWeight += sweet.getWeight();
             System.out.println(count + ". " + sweet.getName() + " - " + sweet.getUniqueParam());
         }
         System.out.println(String.format("\nОбщий вес подарка: %s гр.\nОбщая цена подарка: %s руб.", totalWeight, totalPrice));

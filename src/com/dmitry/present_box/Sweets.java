@@ -1,19 +1,42 @@
 package com.dmitry.present_box;
 //интерфейс Sweets как набор абстрактных методов, определяющих имя, вес и уникальный параметр
-public interface Sweets {
-    String getName();
+abstract class Sweets {
+    private String name;
+    private int price;
+    private int weight;
 
-    void setName(String name);
+    public Sweets(String name, int price, int weight){
+        this.name = name;
+        this.price = price;
+        this.weight =  weight;
+        //this.UniqueParam = UniqueParam;
+    }
 
-    int getPrice();
+     String getName()  {
+        return name;
+    }
 
-    void setPrice(int price);
+    void setName(String name)  {
+        this.name = name;
+    }
 
-    int getWeight();
+    public int getPrice() {
+        return price;
+    }
 
-    void setWeight(int weight);
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
-    String getUniqueParam();
+    public int getWeight() {
+        return weight;
+    }
 
-    void setUniqueParam(String UniqueParam);
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    abstract String getUniqueParam();
+
+    abstract void setUniqueParam(String UniqueParam);
 }
