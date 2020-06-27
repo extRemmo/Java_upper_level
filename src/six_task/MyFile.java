@@ -13,42 +13,50 @@ public class MyFile {
     public static void main(String[] args) throws IOException {
 
         String fileName = "Words.txt";
-        String contents;
-        contents = readUsingBufferedReader(fileName);
+        String contents = readUsingBufferedReader(fileName);
 
-        /**
-        список слов храним в виде мапы, где ключ - само слово, значение - количество его повторений
-         */
+
         Map<String, Integer> wordsList = new HashMap<String, Integer>();
+        String[] words = contents.split("\\s+");
 
-            String[] words = contents.split("\\s+"); //массив слов, выделенных из строк по разделителю - пробелу.
-            for (int i = 0; i < words.length; i++) {
-                String s = words[i];
-                Integer frequency = wordsList.get(s);
-                wordsList.put(s, frequency == null ? 1 : frequency + 1);
-            }
-        /**
-         * для вывода слов в алфавитном порядке используем метод sort
-         * метод toString - строковое представление одномерного массива, разделят элементы запятой
-          */
-            System.out.println("Unsorted array: " + Arrays.toString(words));
-            Arrays.sort(words);
-            System.out.println("Sorted array: " + Arrays.toString(words));
-
-         // вывод всех ключей и значений в связке
-        for (Map.Entry entry : wordsList.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + " -  Value: "
-                    + entry.getValue());
-        }
-
-        int maxValueInMap=(Collections.max(wordsList.values()));  // вернет макс. значение в hashmap
-        for (Map.Entry<String, Integer> entry : wordsList.entrySet()) {  // итерируемся по hashmap
-            if (entry.getValue()==maxValueInMap) {
-                System.out.println("The word - " + entry.getKey() +" - occurred "+ entry.getValue()+" times");     // печать слова с макс. значением (кол-вом повторов)
-            }
-        }
+        MyFile.initMap(contents, wordsList, words);
+        MyFile.alphabetSort(words);
+        MyFile.printStatistics(wordsList);
+        MyFile.maxOccurWord(wordsList);
 
     }
+    public static Map<String, Integer> initMap(String contents, Map<String, Integer> wordsList, String[] words)
+    {
+        for (int i = 0; i < words.length; i++) {
+            String s = words[i];
+            Integer frequency = wordsList.get(s);
+            wordsList.put(s, frequency == null ? 1 : frequency + 1);
+        }
+        return wordsList;
+    }
+
+    public static void  alphabetSort(String[] words)
+    {
+        System.out.println("Unsorted array: " + Arrays.toString(words));
+        Arrays.sort(words);
+        System.out.println("Sorted array: " + Arrays.toString(words));
+    }
+
+    public static void printStatistics(Map<String, Integer> wordsList) {
+        for (Map.Entry entry : wordsList.entrySet()) {
+            System.out.println("word: " + entry.getKey() + " -  occurrences: " + entry.getValue());
+        }
+    }
+
+    public static void maxOccurWord(Map<String, Integer> wordsList) {
+        int maxValueInMap = (Collections.max(wordsList.values()));  // вернет макс. значение в hashmap
+        for (Map.Entry<String, Integer> entry : wordsList.entrySet()) {  // итерируемся по hashmap
+            if (entry.getValue() == maxValueInMap) {
+                System.out.println("The word - " + entry.getKey() + " - occurred " + entry.getValue() + " times");     // печать слова с макс. значением (кол-вом повторов)
+            }
+        }
+    }
+
     //метод чтения файла в строку
     private static String readUsingBufferedReader(String fileName) throws IOException {
         BufferedReader reader = new BufferedReader( new FileReader (fileName));
