@@ -53,7 +53,8 @@ public class Box {
             count++;
             totalPrice += sweet.getPrice();
             totalWeight += sweet.getWeight();
-            System.out.println(count + ". " + sweet.getName() + " - " + sweet.getUniqueParam());
+            System.out.println(count + ". " + sweet);
+
         }
         System.out.println(String.format("\nОбщий вес подарка: %s гр.\nОбщая цена подарка: %s руб.", totalWeight, totalPrice));
     }

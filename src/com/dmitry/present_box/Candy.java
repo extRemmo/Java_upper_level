@@ -1,5 +1,5 @@
 package com.dmitry.present_box;
-//релизуем интерфейс в классе Candy
+
 public class Candy extends Sweets {
 
     private String size;
@@ -9,12 +9,16 @@ public class Candy extends Sweets {
         this.size = size;
     }
 
+    public String toString()
+    {
+        return super.toString() + ", \033[4mразмер\033[0m: " + size;
+    }
 
-    public String getUniqueParam() {
+    public String getSize() {
         return size;
     }
 
-    public void setUniqueParam(String UniqueParam) {
+    public void setSize(String UniqueParam) {
         this.size = size;
     }
 

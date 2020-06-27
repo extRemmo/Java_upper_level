@@ -1,5 +1,5 @@
 package com.dmitry.present_box;
-//интерфейс Sweets как набор абстрактных методов, определяющих имя, вес и уникальный параметр
+
 abstract class Sweets {
     private String name;
     private int price;
@@ -10,6 +10,10 @@ abstract class Sweets {
         this.price = price;
         this.weight =  weight;
         //this.UniqueParam = UniqueParam;
+    }
+    public String toString()
+    {
+        return name + ", цена: " + price + ", вес: " + weight + " ";
     }
 
      String getName()  {
@@ -36,7 +40,4 @@ abstract class Sweets {
         this.weight = weight;
     }
 
-    abstract String getUniqueParam();
-
-    abstract void setUniqueParam(String UniqueParam);
 }
