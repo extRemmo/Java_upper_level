@@ -21,8 +21,6 @@ public class Calculator {
     public double multi (){
         return a * b;
     }
-    public double div (){
-        return a / b;
-    }
+    public double div () { return a/b; }
 
 }
