@@ -5,13 +5,13 @@ public class CalculatorTest {
     public static void main(String[] args)  {
         try {
             CalculatorTest.action(args);
-        } catch (DivisionByZero|IsNotValidNumber e){
+        } catch (DivisionByZeroException|IsNotValidNumberException e){
             System.out.println("Exception handled: " + e);
         }
 
     }
 
-    public static void action(String[] args) throws DivisionByZero, IsNotValidNumber {
+    public static void action(String[] args) throws DivisionByZeroException, IsNotValidNumberException {
         Reader reader = new Reader(); // создали ссылку на экземпляр класса Reader (считывание числа)
         double num1;
         double num2;
@@ -50,7 +50,7 @@ public class CalculatorTest {
 
                 case 4:
                     if (num2 == 0) {
-                        throw new DivisionByZero();
+                        throw new DivisionByZeroException();
 
                     } else {
                         System.out.printf("Результат операции: %.4f\n ", calc.div());
