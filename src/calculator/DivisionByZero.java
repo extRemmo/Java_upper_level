@@ -1,8 +1,8 @@
 package calculator;
 
 public class DivisionByZero extends Exception {
-    public DivisionByZero() {
-        super("Деление на ноль!");
+    public String toString() {
+        return "DivisionByZero (делить на ноль нельзя!)";
     }
 
 }
