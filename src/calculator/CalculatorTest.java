@@ -6,7 +6,7 @@ public class CalculatorTest {
         try {
             CalculatorTest.action(args);
         } catch (DivisionByZeroException|IsNotValidNumberException e){
-            System.out.println("Exception handled: " + e);
+            System.out.println("Exception handled: " + e.getMessage());
         }
 
     }
@@ -49,12 +49,7 @@ public class CalculatorTest {
                     break;
 
                 case 4:
-                    if (num2 == 0) {
-                        throw new DivisionByZeroException();
-
-                    } else {
-                        System.out.printf("Результат операции: %.4f\n ", calc.div());
-                    }
+                    System.out.printf("Результат операции: %.4f\n ", calc.div());
                     break;
 
                 case 0:

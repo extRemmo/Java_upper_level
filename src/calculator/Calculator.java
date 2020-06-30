@@ -21,6 +21,12 @@ public class Calculator {
     public double multi (){
         return a * b;
     }
-    public double div () { return a/b; }
+    public double div () throws DivisionByZeroException {
+        if (b == 0) {
+            throw new DivisionByZeroException();
+        } else {
+            return a / b;
+        }
+    }
 
 }
