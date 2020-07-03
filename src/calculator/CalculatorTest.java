@@ -1,66 +1,54 @@
 package calculator;
 
+import org.junit.*;
+import org.junit.rules.ExpectedException;
+
 public class CalculatorTest {
 
-    public static void main(String[] args)  {
-        try {
-            CalculatorTest.action(args);
-        } catch (DivisionByZeroException|IsNotValidNumberException e){
-            System.out.println("Exception handled: " + e.getMessage());
-        }
+    private Calculator calculator;
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
+    @org.junit.Test
+    public void testAdditionOfTwoNumbers() {
+        calculator = new Calculator(10.5,5.5);
+        Assert.assertEquals(16.0, calculator.add(),0.0);
 
     }
 
-    public static void action(String[] args) throws DivisionByZeroException, IsNotValidNumberException {
-        Reader reader = new Reader(); // создали ссылку на экземпляр класса Reader (считывание числа)
-        double num1;
-        double num2;
-        int action;
-
-        do {
-            System.out.print("Введите первое число: ");
-            num1 = reader.readNext(); //считываем число и запишем в переменные
-            System.out.print("Введите второе число: ");
-            num2 = reader.readNext();
-            Calculator calc = new Calculator(num1, num2);
-
-            // создаем ссылку на объект класса Calculator и иниц. ее с помощью конструктора
-
-            System.out.println("Выберите операцию:");
-            System.out.println("1 - Сложить");
-            System.out.println("2 - Вычесть");
-            System.out.println("3 - Умножить");
-            System.out.println("4 - Разделить");
-            System.out.println("0 - Выход");
-
-            action = (int) reader.readNext(); //считаем double число используя метод readNext, но приводим к целочисл.типу
-
-            switch (action) {
-                case 1:
-                    System.out.printf("Результат операции: %.4f\n ", calc.add());
-                    break;
-
-                case 2:
-                    System.out.printf("Результат операции: %.4f\n ", calc.subs());
-                    break;
-
-                case 3:
-                    System.out.printf("Результат операции: %.4f\n ", calc.multi());
-                    break;
-
-                case 4:
-                    System.out.printf("Результат операции: %.4f\n ", calc.div());
-                    break;
-
-                case 0:
-                    break;
-
-                default:
-                    System.out.println("Выберите один из указанных пунктов!");
-
-            }
-        } while (action != 0);
-
+    @org.junit.Test
+    public void testSubstitutionOfTwoNumbers() {
+        calculator = new Calculator(10.2,15.1);
+        Assert.assertEquals(-4.9, calculator.subs(), 0.0);
     }
+
+    @org.junit.Test
+    public void testMultiplicationOfTwoNumbers() {
+        calculator = new Calculator(7,-7);
+        Assert.assertEquals(-49, calculator.multi(), 0.0);
+    }
+
+    @org.junit.Test
+    public void testDivisionOfTwoNumbers() throws DivisionByZeroException {
+        calculator = new Calculator(1, 10);
+        Assert.assertEquals(0.1, calculator.div(), 0.0);
+    }
+
+    @Test(expected = DivisionByZeroException.class)
+    public void testDivideWillThrowExceptionWhenDivideOnZero() throws DivisionByZeroException {
+        calculator = new Calculator(0, 0);
+        calculator.div();
+    }
+    /*
+    тот же тест но на проверку самого текста ошибки
+     */
+    @Test
+    public void testDivideWillThrowExceptionWhenDivideOnZero2() throws DivisionByZeroException {
+        expectedException.expect(DivisionByZeroException.class);
+        expectedException.expectMessage("Делить на ноль нельзя!");
+        calculator = new Calculator(0, 0);
+        calculator.div();
+    }
+
 }
-
